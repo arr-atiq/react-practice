@@ -11,7 +11,18 @@
 
     </ul>
     <script>
-        
+        fetch("https://jsonplaceholder.typicode.com/users")
+        .then(res => res.json())
+        .then(data => showUserList(data));
+
+       function showUserList(data){
+            lists = "";
+            data.forEach(user => {
+                lists = lists + `<li>Name: ${user.name} = Email: ${user.email}<li>`
+            });
+            const ul = document.getElementById("user-list");
+            ul.innerHTML = lists;
+        }
     </script>
 </body>
 </html>
