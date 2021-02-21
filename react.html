@@ -5,23 +5,38 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>React World</title>
+    <style>
+        .user-style{
+            background-color: goldenrod;
+            border-radius: 10px;
+            margin: 20px;
+            padding: 20px;
+            box-shadow: 5px 5px 10px gray;
+        }
+    </style>
 </head>
 <body>
-    <ul id="user-list">
+    <div id="container">
 
-    </ul>
+    </div>
     <script>
         fetch("https://jsonplaceholder.typicode.com/users")
         .then(res => res.json())
         .then(data => showUserList(data));
 
        function showUserList(data){
-            lists = "";
+           let UserLists = "";
             data.forEach(user => {
-                lists = lists + `<li>Name: ${user.name} = Email: ${user.email}<li>`
+                UserLists = UserLists + `<div class="user-style">
+                    <h2>Name: ${user.name}</h2>
+                    <p>Email: ${user.email}</p>
+                    <p>${user.company.name}</p>
+                    <p>${user.company.catchPhrase}</p>
+                    <p>${user.company.bs}</p>
+                    </div>`
             });
-            const ul = document.getElementById("user-list");
-            ul.innerHTML = lists;
+            const ContainerDiv = document.getElementById("container");
+            ContainerDiv.innerHTML = UserLists;
         }
     </script>
 </body>
